@@ -1,1 +1,1 @@
-<a href="a">RU</a>
+<a href="https://github.com/DevMugiTeam/WeekZ">RU</a>
