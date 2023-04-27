@@ -1,4 +1,4 @@
-<h5>Language: <a href="https://github.com/DevMugiTeam/WeekZ">RU</a>
+<h5>Language: <a href="https://github.com/DevMugiTeam/WeekZ">RU</a>, 
               <a href="https://github.com/DevMugiTeam/WeekZ/blob/master/Readme_EN.md">EN</a></h5>
 <h1 align = "center">WeekZ</h1>
   <h2 align = "center">Попробуй выжить в WeekZ</h2>
