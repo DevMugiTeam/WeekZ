@@ -1,18 +1,15 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Character : Mob
+// Класс персонажа
+namespace Mobs
 {
-    // Start is called before the first frame update
-    void Start()
+    [RequireComponent(typeof(MobComponents.Controllable))]
+    [RequireComponent(typeof(InputSytem.InputHandler))]
+    public class Character : Mob
     {
- 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+      
     }
 }

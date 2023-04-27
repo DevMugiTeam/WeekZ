@@ -35,6 +35,51 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": true
+                },
+                {
+                    ""name"": ""Fire"",
+                    ""type"": ""Button"",
+                    ""id"": ""be26880e-9299-4f61-bae0-7248fdce73c1"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""36ded98c-99e5-4300-9ba0-4850dd4d0122"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""64a44d9e-07e1-49ea-8dc2-13baa338099d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""Dash"",
+                    ""type"": ""Button"",
+                    ""id"": ""4de6adb8-d1ce-4191-b72c-52ac23e16a8e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""GazeDirection"",
+                    ""type"": ""Value"",
+                    ""id"": ""4f5e6d70-0c6c-4f16-ad72-672000d792b1"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -92,6 +137,61 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                     ""action"": ""Movement"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": true
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""a775c1eb-f10d-473c-b16d-ed09a4d461b5"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Fire"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4b71f3e0-008e-4f86-9570-58594b1f31bf"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""5a6a13b3-8f33-47e5-8c1e-891bc43f1997"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""112e153e-355a-4bdc-88dd-74f286828533"",
+                    ""path"": ""<Keyboard>/space"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Dash"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""6b30ad7e-8b57-4afa-a044-fe06eccdfd95"",
+                    ""path"": ""<Mouse>/position"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""GazeDirection"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -101,6 +201,11 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
         // Character
         m_Character = asset.FindActionMap("Character", throwIfNotFound: true);
         m_Character_Movement = m_Character.FindAction("Movement", throwIfNotFound: true);
+        m_Character_Fire = m_Character.FindAction("Fire", throwIfNotFound: true);
+        m_Character_Run = m_Character.FindAction("Run", throwIfNotFound: true);
+        m_Character_Pause = m_Character.FindAction("Pause", throwIfNotFound: true);
+        m_Character_Dash = m_Character.FindAction("Dash", throwIfNotFound: true);
+        m_Character_GazeDirection = m_Character.FindAction("GazeDirection", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -161,11 +266,21 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Character;
     private ICharacterActions m_CharacterActionsCallbackInterface;
     private readonly InputAction m_Character_Movement;
+    private readonly InputAction m_Character_Fire;
+    private readonly InputAction m_Character_Run;
+    private readonly InputAction m_Character_Pause;
+    private readonly InputAction m_Character_Dash;
+    private readonly InputAction m_Character_GazeDirection;
     public struct CharacterActions
     {
         private @GameInput m_Wrapper;
         public CharacterActions(@GameInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Character_Movement;
+        public InputAction @Fire => m_Wrapper.m_Character_Fire;
+        public InputAction @Run => m_Wrapper.m_Character_Run;
+        public InputAction @Pause => m_Wrapper.m_Character_Pause;
+        public InputAction @Dash => m_Wrapper.m_Character_Dash;
+        public InputAction @GazeDirection => m_Wrapper.m_Character_GazeDirection;
         public InputActionMap Get() { return m_Wrapper.m_Character; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -178,6 +293,21 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Movement.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnMovement;
+                @Fire.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFire;
+                @Fire.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFire;
+                @Fire.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnFire;
+                @Run.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnRun;
+                @Pause.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnPause;
+                @Dash.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDash;
+                @Dash.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDash;
+                @Dash.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnDash;
+                @GazeDirection.started -= m_Wrapper.m_CharacterActionsCallbackInterface.OnGazeDirection;
+                @GazeDirection.performed -= m_Wrapper.m_CharacterActionsCallbackInterface.OnGazeDirection;
+                @GazeDirection.canceled -= m_Wrapper.m_CharacterActionsCallbackInterface.OnGazeDirection;
             }
             m_Wrapper.m_CharacterActionsCallbackInterface = instance;
             if (instance != null)
@@ -185,6 +315,21 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Fire.started += instance.OnFire;
+                @Fire.performed += instance.OnFire;
+                @Fire.canceled += instance.OnFire;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
+                @Dash.started += instance.OnDash;
+                @Dash.performed += instance.OnDash;
+                @Dash.canceled += instance.OnDash;
+                @GazeDirection.started += instance.OnGazeDirection;
+                @GazeDirection.performed += instance.OnGazeDirection;
+                @GazeDirection.canceled += instance.OnGazeDirection;
             }
         }
     }
@@ -192,5 +337,10 @@ public partial class @GameInput : IInputActionCollection2, IDisposable
     public interface ICharacterActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnFire(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
+        void OnDash(InputAction.CallbackContext context);
+        void OnGazeDirection(InputAction.CallbackContext context);
     }
 }
