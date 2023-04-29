@@ -17,6 +17,10 @@ namespace Mobs {
         [SerializeField] protected bool _invulnerability;
         [SerializeField] protected bool _immotality;
 
+        [SerializeField] protected Fraction _fraction;
+        [SerializeField] protected Fraction[] _enemies;
+        [SerializeField] protected Fraction[] _allies;
+
         public Action<int> changeHp;
         internal Action<Vector2> readMovement;
 
