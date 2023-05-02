@@ -9,5 +9,7 @@ namespace Equipment
     public abstract class Equipment : MonoBehaviour
     {
         [SerializeField] protected Types _type;
+    
+        public Types GetEType() { return _type; }
     }
 }

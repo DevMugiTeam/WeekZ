@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-// Класс определяет как конртолируется существо
+// Класс определяет поведение существа
 namespace MobComponents
 {
     public class Controllable : MonoBehaviour
