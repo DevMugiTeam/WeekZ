@@ -1,18 +1,20 @@
+using Equipment;
+using MobComponents;
 using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 // Класс родитель всех живых существ в игре
-namespace Mobs {
+namespace Mobs
+{
     [RequireComponent(typeof(Rigidbody2D))]
     [RequireComponent(typeof(Collider2D))]
-    [RequireComponent(typeof(MobComponents.Movement))]
+    [RequireComponent(typeof(Movement))]
+    [RequireComponent(typeof(States))]
     public abstract class Mob : MonoBehaviour
     {
-        [SerializeField] protected int _hp;
-        [SerializeField] protected int _hpMax;
-        [SerializeField] protected int _speed;
+        [SerializeField] protected States _states;
 
         [SerializeField] protected bool _invulnerability;
         [SerializeField] protected bool _immotality;
@@ -21,8 +23,15 @@ namespace Mobs {
         [SerializeField] protected Fraction[] _enemies;
         [SerializeField] protected Fraction[] _allies;
 
+        [SerializeField] protected Inventory _inventory;
+
         public Action<int> changeHp;
         internal Action<Vector2> readMovement;
+
+        private void Awake()
+        {
+            _states = GetComponent<States>();
+        }
 
         private void OnEnable()
         {
@@ -36,21 +45,21 @@ namespace Mobs {
 
         private void ChangeHp(int input)
         {
-            if(input < 0)
+            if (input < 0)
             {
                 if (_invulnerability) return;
                 else
                 {
-                    _hp += input;
-                    if(_hp <= 0)
+                    _states.hp += input;
+                    if (_states.hp <= 0)
                     {
-                        if(_immotality)
+                        if (_immotality)
                         {
-                            _hp = 1;
+                            _states.hp = 1;
                         }
                         else
                         {
-                            _hp = 0;
+                            _states.hp = 0;
                             Die();
                         }
                     }
@@ -58,10 +67,10 @@ namespace Mobs {
             }
             else
             {
-                _hp += input;
-                if(_hp > _hpMax)
+                _states.hp += input;
+                if (_states.hp > _states.hp_Max)
                 {
-                    _hp = _hpMax;
+                    _states.hp = _states.hp_Max;
                 }
             }
         }
@@ -71,6 +80,6 @@ namespace Mobs {
 
         }
 
-        public int Speed { get { return _speed; }  }
+        public int Speed { get { return _states.speed; } }
     }
 }
