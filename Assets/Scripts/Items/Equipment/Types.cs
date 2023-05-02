@@ -38,7 +38,7 @@ namespace Equipment
         Head = 1 << 1,
         Body = 1 << 2,
         Overdress = 1 << 3,
-        Palms = 1 << 4,
+        //Palms = 1 << 4,
         Legs = 1 << 5,
         Feats = 1 << 6,
         Backpack = 1 << 7,
@@ -46,7 +46,7 @@ namespace Equipment
         W_Secondary = 1 << 9,
         W_Melee = 1 << 10,
         W_Throwing = 1 << 11,
-        Armor = Face | Head | Body | Palms | Legs | Feats | Backpack,
+        Armor = Face | Head | Body | Overdress /*| Palms*/ | Legs | Feats | Backpack,
         Weapon = W_First | W_Secondary | W_Melee | W_Throwing
     }
 }
