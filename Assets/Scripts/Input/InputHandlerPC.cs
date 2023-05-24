@@ -48,9 +48,15 @@ namespace InputSytem
             _controllable.Dash();
         }
 
-        private void RunPerformed(InputAction.CallbackContext obj) { }
+        private void RunPerformed(InputAction.CallbackContext obj) 
+        {
+            _controllable.Run(true);
+        }
 
-        private void RunCanceled(InputAction.CallbackContext obj) { }
+        private void RunCanceled(InputAction.CallbackContext obj) 
+        {
+            _controllable.Run(false);
+        }
 
         private void Pause(InputAction.CallbackContext obj) { }
 

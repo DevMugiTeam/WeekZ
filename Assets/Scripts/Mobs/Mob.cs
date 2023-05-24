@@ -10,6 +10,7 @@ namespace Mobs
 {
     [RequireComponent(typeof(Collider2D))]
     [RequireComponent(typeof(Movement))]
+    [RequireComponent(typeof(Inventory))]
     [RequireComponent(typeof(States))]
     [RequireComponent(typeof(AnimationController))]
     public abstract class Mob : MonoBehaviour
@@ -20,21 +21,25 @@ namespace Mobs
 
         [SerializeField] protected bool _invulnerability;
         [SerializeField] protected bool _immotality;
-        [SerializeField] internal bool inDash;
+        [SerializeField] protected bool _inDash;
  
         [SerializeField] protected Fraction _fraction;
         [SerializeField] protected Fraction[] _enemies;
         [SerializeField] protected Fraction[] _allies;
 
         [SerializeField] protected Inventory _inventory;
+        [SerializeField] protected WearManager _wearManager;
 
         public Action<int> changeHp;
+        internal Action<bool> invulnerability;
+        internal Action<bool> inDash;
 
         private void Awake()
         {
             _states = GetComponent<States>();
             _movement = GetComponent<Movement>();
             _anim = GetComponent<AnimationController>();
+            _inventory = GetComponent<Inventory>();
         }
 
         private void Start()
@@ -46,11 +51,15 @@ namespace Mobs
         private void OnEnable()
         {
             changeHp += ChangeHp;
+            invulnerability += SetInvulnerability;
+            inDash += SetInDash;
         }
 
         private void OnDisable()
         {
             changeHp -= ChangeHp;
+            invulnerability -= SetInvulnerability;
+            inDash -= SetInDash;
         }
 
         private void ChangeHp(int input)
@@ -91,5 +100,21 @@ namespace Mobs
         }
 
         public int Speed { get { return _states.speed; } }
+
+        public int SpeedRun { get { return _states.speed_run; } }
+
+        public bool Invulnerability { get { return _invulnerability; } }
+
+        public bool InDash {  get { return _inDash; } }
+
+        private void SetInvulnerability(bool input)
+        {
+            _invulnerability = input;
+        }
+
+        private void SetInDash(bool input)
+        {
+            _inDash = input;
+        }
     }
 }

@@ -9,7 +9,7 @@ namespace MobComponents
     {
         protected Mob _mob;
 
-        virtual internal void SetMob(Mob input)
+        internal virtual void SetMob(Mob input)
         {
             _mob = input;
         }

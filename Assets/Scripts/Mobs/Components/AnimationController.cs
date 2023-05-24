@@ -42,25 +42,25 @@ namespace MobComponents
 
         private void OnDisable()
         {
-            play -= StartAnimation;
+            play -= StartAnimation;          
 
             
         }
 
         private void OnDestroy()
         {
-            _mob._movement.idle -= StartAnimIdle;
-            _mob._movement.move -= StartAnimMove;
-            _mob._movement.dash -= StartAnimDash;
+            _mob._movement.idle -= PlayAnimIdle;
+            _mob._movement.move -= PlayAnimMove;
+            _mob._movement.dash -= PlayAnimDash;
         }
 
         override internal void SetMob(Mob input)
         {
             _mob = input;
 
-            _mob._movement.idle += StartAnimIdle;
-            _mob._movement.move += StartAnimMove;
-            _mob._movement.dash += StartAnimDash;
+            _mob._movement.idle += PlayAnimIdle;
+            _mob._movement.move += PlayAnimMove;
+            _mob._movement.dash += PlayAnimDash;
         }
 
         private void StartAnimation(string input)
@@ -82,24 +82,31 @@ namespace MobComponents
             }
         }
 
-        private void StartAnimIdle()
+        private void PlayAnimIdle()
         {
             _animator.Play(_animationsHashes[0]);
         }
 
-        private void StartAnimMove()
+        private void PlayAnimMove()
         {
             _animator.Play(_animationsHashes[1]);
         }
 
-        private void StartAnimDash()
+        private void PlayAnimDash()
         {
             _animator.Play(_animationsHashes[2]);
         }
 
-        private void EndAnimDash()
+        private void StartDash()
         {
-            _mob.inDash = false;
+            _mob.inDash(true);
+            _mob.invulnerability(true);
+        }
+
+        private void EndDash()
+        {
+            _mob.inDash(false);
+            _mob.invulnerability(false);
         }
     }
 }

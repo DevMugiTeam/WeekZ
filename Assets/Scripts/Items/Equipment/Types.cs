@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 // Типы снаряжения
 // Armor - вся одежда
@@ -9,16 +10,34 @@ namespace Equipment
     {
         public static Array GetAllTypes()
         { return Enum.GetValues(typeof(Types)); }
-        
+
         public static Types[] GetTypesArray()
         {
             Array a = GetAllTypes();
             Types[] t = new Types[a.Length];
             for (int i = 0; i < a.Length; i++)
             {
-                t[i] =(Types) (a.GetValue(i));
+                t[i] = (Types)(a.GetValue(i));
             }
             return t;
+        }
+
+        public static Types[] GetArmorTypesArray()
+        {
+            Types[] result;
+            {
+                ArrayList array = new ArrayList();
+                foreach (Types i in Enum.GetValues(typeof(Types)))
+                {
+                    if((i & Types.Armor) > 0)
+                    {
+                        array.Add(i);
+                    }
+                }
+                result = (Types[]) array.ToArray(typeof(Types));
+            }
+
+            return result;
         }
 
         public static bool CompareTypes(Types input1, Types input2)
@@ -40,13 +59,13 @@ namespace Equipment
         Overdress = 1 << 3,
         //Palms = 1 << 4,
         Legs = 1 << 5,
-        Feats = 1 << 6,
+        Feet = 1 << 6,
         Backpack = 1 << 7,
         W_First = 1 << 8,
         W_Secondary = 1 << 9,
         W_Melee = 1 << 10,
         W_Throwing = 1 << 11,
-        Armor = Face | Head | Body | Overdress /*| Palms*/ | Legs | Feats | Backpack,
+        Armor = Face | Head | Body | Overdress /*| Palms*/ | Legs | Feet | Backpack,
         Weapon = W_First | W_Secondary | W_Melee | W_Throwing
     }
 }

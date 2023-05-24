@@ -17,6 +17,7 @@ namespace MobComponents
         public int level;
 
         public int speed;
+        public int speed_run;
 
         public int defense;
 

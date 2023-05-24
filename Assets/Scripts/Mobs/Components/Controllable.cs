@@ -5,7 +5,7 @@ using UnityEngine;
 // Класс определяет поведение существа
 namespace MobComponents
 {
-    public class Controllable : MonoBehaviour
+    public class Controllable : Component
     {
         private Mobs.Character _character;
 
@@ -21,7 +21,12 @@ namespace MobComponents
 
         public void Dash()
         {
-            _character._movement.dash?.Invoke();
+            _character._movement.Dash();
+        }
+
+        public void Run(bool input)
+        {
+            _character._movement.RunPressed(input);
         }
     }
 }

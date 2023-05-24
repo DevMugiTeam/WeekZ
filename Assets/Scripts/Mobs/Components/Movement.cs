@@ -13,10 +13,16 @@ namespace MobComponents
     public class Movement : Component
     {
         [SerializeField] private int _dashPower;
-        private int _speedCurrent;
         private Vector2 _moveVector;
+        private bool _runPressed;
+        private int _speedCurrent;
 
         private Rigidbody2D _rb;
+
+        internal Action<Vector2> readMovement;
+        internal Action idle;
+        internal Action move;
+        internal Action dash;
 
         internal Action<Vector2> readMovement;
         internal Action idle;
@@ -28,21 +34,14 @@ namespace MobComponents
             _rb =  GetComponent<Rigidbody2D>();
         }
 
-        private void Start()
-        {
-            _speedCurrent = _mob.Speed;
-        }
-
         private void OnEnable()
         {
             readMovement += ReadMovement;
-            dash += Dash;
         }
 
         private void OnDisable()
         {
             readMovement -= ReadMovement;
-            dash -= Dash;
         }
 
         private void FixedUpdate()
@@ -52,8 +51,19 @@ namespace MobComponents
 
         private void Move()
         {
-            if (_mob.inDash) return;
+            if (_mob.InDash) return;
+
+            if (_runPressed)
+            {
+                _speedCurrent = (_mob.Speed + _mob.SpeedRun);
+            }
+            else
+            {
+                _speedCurrent = _mob.Speed;
+            }
+
             _rb.velocity = _moveVector * _speedCurrent;
+
             if(_moveVector.magnitude == 0)
             {
                 idle?.Invoke();
@@ -64,12 +74,16 @@ namespace MobComponents
             }
         }
 
-        private void Dash()
+        internal void Dash()
         {
-            if(_mob.inDash || _moveVector.magnitude == 0) return;
-            _mob.inDash = true;
-            _rb.velocity = _moveVector * _dashPower;
+            if(_mob.InDash || _moveVector.magnitude == 0) return;
+            _rb.velocity = _moveVector * (_dashPower + _speedCurrent);
             dash?.Invoke();
+        }
+
+        internal void RunPressed(bool input)
+        {
+            _runPressed = input;
         }
 
         private void ReadMovement(Vector2 input)
