@@ -16,7 +16,12 @@ namespace MobComponents
 
         public void ReadMovement(Vector2 input)
         {
-            _character.readMovement(input);
+            _character._movement.readMovement(input);
+        }
+
+        public void Dash()
+        {
+            _character._movement.dash?.Invoke();
         }
     }
 }

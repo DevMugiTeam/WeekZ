@@ -9,7 +9,7 @@ namespace InputSytem
     public class InputHandlerPC : MonoBehaviour
     {
         [SerializeField] private GameInput _gameInput;
-        [SerializeField] private MobComponents.Controllable _controllable;
+        private MobComponents.Controllable _controllable;
 
         private void Awake()
         {
@@ -44,7 +44,9 @@ namespace InputSytem
 
         private void Fire(InputAction.CallbackContext obj) { }
 
-        private void Dash(InputAction.CallbackContext obj) { }
+        private void Dash(InputAction.CallbackContext obj) {
+            _controllable.Dash();
+        }
 
         private void RunPerformed(InputAction.CallbackContext obj) { }
 
