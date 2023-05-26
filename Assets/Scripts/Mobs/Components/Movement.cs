@@ -24,11 +24,6 @@ namespace MobComponents
         internal Action move;
         internal Action dash;
 
-        internal Action<Vector2> readMovement;
-        internal Action idle;
-        internal Action move;
-        internal Action dash;
-
         private void Awake()
         {
             _rb =  GetComponent<Rigidbody2D>();
