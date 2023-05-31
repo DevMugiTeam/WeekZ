@@ -1,5 +1,7 @@
 using System;
 using System.Collections;
+using System.Collections.Generic;
+using Unity.VisualScripting;
 
 // Типы снаряжения
 // Armor - вся одежда
@@ -9,35 +11,21 @@ namespace Equipment
     public abstract class TypesHelper
     {
         public static Array GetAllTypes()
-        { return Enum.GetValues(typeof(Types)); }
+        {
+            return Enum.GetValues(typeof(Types));
+        }
 
         public static Types[] GetTypesArray()
         {
-            Array a = GetAllTypes();
-            Types[] t = new Types[a.Length];
-            for (int i = 0; i < a.Length; i++)
-            {
-                t[i] = (Types)(a.GetValue(i));
-            }
-            return t;
+            return (Types[])Enum.GetValues(typeof(Types));
         }
 
-        public static Types[] GetArmorTypesArray()
+        public static Types[] GetAllTypes(Predicate<Types> predicate)
         {
-            Types[] result;
-            {
-                ArrayList array = new ArrayList();
-                foreach (Types i in Enum.GetValues(typeof(Types)))
-                {
-                    if((i & Types.Armor) > 0)
-                    {
-                        array.Add(i);
-                    }
-                }
-                result = (Types[]) array.ToArray(typeof(Types));
-            }
-
-            return result;
+            List<Types> array = new List<Types>();
+            array.AddRange(GetAllTypes());
+            array.RemoveAll(predicate);
+            return array.ToArray();
         }
 
         public static bool CompareTypes(Types input1, Types input2)
@@ -53,6 +41,7 @@ namespace Equipment
 
     public enum Types
     {
+        Null = 0,
         Face = 1 << 0,
         Head = 1 << 1,
         Body = 1 << 2,

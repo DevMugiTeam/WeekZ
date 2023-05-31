@@ -19,9 +19,9 @@ namespace Mobs
         internal Movement _movement;
         protected AnimationController _anim;
 
-        [SerializeField] protected bool _invulnerability;
-        [SerializeField] protected bool _immotality;
-        [SerializeField] protected bool _inDash;
+        [SerializeField] protected bool _invulnerability;// Неуязвимость (нельзя получить урон)
+        [SerializeField] protected bool _immotality;// Бессмертие (можно получить урон, но не умереть)
+        [SerializeField] protected bool _inDash;// В кувырке
  
         [SerializeField] protected Fraction _fraction;
         [SerializeField] protected Fraction[] _enemies;
@@ -29,6 +29,7 @@ namespace Mobs
 
         [SerializeField] protected Inventory _inventory;
         [SerializeField] protected WearManager _wearManager;
+        [SerializeField] protected WeaponManager _weaponManager;
 
         public Action<int> changeHp;
         internal Action<bool> invulnerability;
@@ -46,6 +47,7 @@ namespace Mobs
         {
             _movement.SetMob(this);
             _anim.SetMob(this);
+            _wearManager.SetMob(this);
         }
 
         private void OnEnable()
@@ -97,6 +99,11 @@ namespace Mobs
         private void Die()
         {
 
+        }
+
+        private bool PickItem(Equipment.Equipment item)
+        {
+            return _inventory.AddEquipment(item);
         }
 
         public int Speed { get { return _states.speed; } }

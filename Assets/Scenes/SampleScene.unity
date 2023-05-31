@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3635744}
+  - component: {fileID: 3635745}
   m_Layer: 0
   m_Name: Weapon
   m_TagString: Untagged
@@ -154,6 +155,21 @@ Transform:
   m_Father: {fileID: 948627798}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3635745
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3635743}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 48651f0c46a747440886ccdaecc063fb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mob: {fileID: 0}
+  _equipmentList: []
+  _equipped: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -251,10 +267,11 @@ GameObject:
   - component: {fileID: 948627801}
   - component: {fileID: 948627800}
   - component: {fileID: 948627799}
-  - component: {fileID: 948627808}
+  - component: {fileID: 948627811}
   - component: {fileID: 948627804}
   - component: {fileID: 948627803}
   - component: {fileID: 948627805}
+  - component: {fileID: 948627809}
   - component: {fileID: 948627807}
   - component: {fileID: 948627806}
   m_Layer: 0
@@ -272,8 +289,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 948627797}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.0010537803, y: -0.056042906, z: 0.03760008}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 1569485651}
@@ -301,6 +318,8 @@ MonoBehaviour:
   _enemies: 
   _allies: 
   _inventory: {fileID: 0}
+  _wearManager: {fileID: 1569485652}
+  _weaponManager: {fileID: 0}
 --- !u!114 &948627800
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -313,6 +332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 089faac1fa0041f42866d175ac127252, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mob: {fileID: 0}
   _dashPower: 10
 --- !u!50 &948627801
 Rigidbody2D:
@@ -352,7 +372,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.8666667, y: 1.8666667}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -373,6 +393,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a49914f33faac9040844f70817a69714, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _mob: {fileID: 0}
 --- !u!114 &948627804
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -452,7 +473,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -1421073739, guid: 847f30b65ff833b45ad7762f0c572f4d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -460,7 +481,7 @@ SpriteRenderer:
   m_Size: {x: 1, y: 1}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 0
+  m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!95 &948627807
@@ -483,7 +504,7 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &948627808
+--- !u!114 &948627809
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -492,9 +513,24 @@ MonoBehaviour:
   m_GameObject: {fileID: 948627797}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e5e9d46585063c44382c6e360d6db2c4, type: 3}
+  m_Script: {fileID: 11500000, guid: 0c464cc015ac0f441a35d6f5b7b3d665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _equipment: []
+--- !u!114 &948627811
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 948627797}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f9abafed96208ba4f95c951cc6512f32, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mob: {fileID: 0}
+  _animator: {fileID: 0}
   _animations:
   - Idle
   - Move
@@ -508,6 +544,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1569485651}
+  - component: {fileID: 1569485652}
   m_Layer: 0
   m_Name: Wear
   m_TagString: Untagged
@@ -523,10 +560,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1569485650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: -0.001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 948627798}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1569485652
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1569485650}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78a943351a5414a499e52b4d2e953953, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _mob: {fileID: 948627799}
+  _equipmentList:
+  - {fileID: 3199443006732524663, guid: eb12ff6948eebe24bb8c2b4a4417b3a4, type: 3}
+  _equipped: 0

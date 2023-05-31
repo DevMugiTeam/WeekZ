@@ -7,11 +7,17 @@ namespace MobComponents
 {
     public class Component : MonoBehaviour
     {
-        protected Mob _mob;
+        [SerializeField] protected Mob _mob;
 
         internal virtual void SetMob(Mob input)
         {
+            if (input == null) return;
             _mob = input;
+        }
+        
+        internal virtual void RemoveMob()
+        {
+            _mob = null;
         }
     }
 }

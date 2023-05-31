@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 847f30b65ff833b45ad7762f0c572f4d
+guid: ed04bae5d7b185543b8cde5c758ef2c9
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,7 +141,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Character_0
+      name: Sneakers_0
       rect:
         serializedVersion: 2
         x: 0
@@ -155,14 +155,56 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d283d70485a4d524fa27d906f77b4012
-      internalID: -1421073739
+      spriteID: 73f001e2af793144789e84fedc8121a1
+      internalID: -1294264449
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_1
+      name: Sneakers_1
+      rect:
+        serializedVersion: 2
+        x: 56
+        y: 112
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e967f05d5dc220c40b37376448a97aaf
+      internalID: -997966625
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sneakers_2
+      rect:
+        serializedVersion: 2
+        x: 112
+        y: 112
+        width: 56
+        height: 56
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 36815df17e194934cb0a0b216165ef39
+      internalID: -1270668102
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Sneakers_3
       rect:
         serializedVersion: 2
         x: 0
@@ -176,14 +218,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0f163e0d5e7a63e4f929bd59fc711979
-      internalID: 1834686137
+      spriteID: ac5e8fd50b2e6744485a0adb7ee52846
+      internalID: -1549271151
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_2
+      name: Sneakers_4
       rect:
         serializedVersion: 2
         x: 56
@@ -197,14 +239,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 22a4bbc8a70e20b46ad5b06241d7d926
-      internalID: 318278970
+      spriteID: 9758c51efbffde64086193e00005d865
+      internalID: -1679648086
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_3
+      name: Sneakers_5
       rect:
         serializedVersion: 2
         x: 112
@@ -218,35 +260,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 2bd9d777e74aca84bbff1c92764f2a66
-      internalID: 1748675124
+      spriteID: 8896ac3c6be74044c965904afdfb302c
+      internalID: 1907192909
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_4
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 56
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8738d46b2363a8f4aabf29e3ba07294e
-      internalID: -2073637565
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_5
+      name: Sneakers_6
       rect:
         serializedVersion: 2
         x: 0
@@ -260,14 +281,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f0690d5f9e92f2b43afd3a6fc70174a7
-      internalID: -1511182863
+      spriteID: 8b17d2e427f86b94e8fb96b38b75af30
+      internalID: 601916420
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_6
+      name: Sneakers_7
       rect:
         serializedVersion: 2
         x: 56
@@ -281,14 +302,14 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: ee87b1ec718f3074db57df72ebb88706
-      internalID: 823202510
+      spriteID: 36702f4f72cf8ff46b68ec94a05a4518
+      internalID: -1088572524
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Character_7
+      name: Sneakers_8
       rect:
         serializedVersion: 2
         x: 112
@@ -302,50 +323,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: cf7ac1c1f6a0069468d48408f164e772
-      internalID: -1108527918
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_8
-      rect:
-        serializedVersion: 2
-        x: 168
-        y: 0
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 136c8ad8d40cfec408674dbeddb677ae
-      internalID: 1754505069
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Character_9
-      rect:
-        serializedVersion: 2
-        x: 224
-        y: 0
-        width: 56
-        height: 56
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a7a92953524fca64a9d4c291151ab50a
-      internalID: 1600982956
+      spriteID: 9fdfbb875514b5242bb131ee2c00018c
+      internalID: 836507608
       vertices: []
       indices: 
       edges: []
@@ -361,16 +340,15 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Character_5: -1511182863
-      Character_7: -1108527918
-      Character_1: 1834686137
-      Character_6: 823202510
-      Character_8: 1754505069
-      Character_3: 1748675124
-      Character_0: -1421073739
-      Character_9: 1600982956
-      Character_2: 318278970
-      Character_4: -2073637565
+      Sneakers_6: 601916420
+      Sneakers_4: -1679648086
+      Sneakers_3: -1549271151
+      Sneakers_8: 836507608
+      Sneakers_5: 1907192909
+      Sneakers_1: -997966625
+      Sneakers_7: -1088572524
+      Sneakers_2: -1270668102
+      Sneakers_0: -1294264449
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

@@ -1,6 +1,10 @@
+using System;
+using System.Collections;
+using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Windows;
 
 // Класс инвентаря
 // Содержит объекты снаряжения 
@@ -8,50 +12,48 @@ namespace Equipment
 {
     public class Inventory : MonoBehaviour
     {
-        private Types[] _types;
-        private Equipment[] _equipment;
+
+        // Занятые места для снаряжения
+        private int _equipped;
+
+        //Список снаряжения
+        [SerializeField] private List<Equipment> _equipment;
 
         private void Awake()
         {
-            _types = TypesHelper.GetTypesArray();
-            _equipment = new Equipment[_types.Length];
+            _equipment = new List<Equipment>();
+            _equipped = 0;
         }
 
         public bool AddEquipment(Equipment input)
         {
-            for(int i = 0; i < _types.Length; i++)
-            {
-                if(TypesHelper.CompareTypes(input.GetEType(), _types[i]))
-                {
-                    _equipment[i] = input;
-                    return true;
-                }
-            }
-            return false;
+            if (IsThisEquipmentEquipped(input.GetEType())) return false;
+            _equipment.Add(input);
+            _equipped |= (int)input.GetEType();
+            return true;
         }
 
         public void RemoveEquipment(Types input)
         {
-            for (int i = 0; i < _types.Length; i++)
-            {
-                if (TypesHelper.CompareTypes(input, _types[i]))
-                {
-                    _equipment[i] = null;
-                    return;
-                }
-            }
+            _equipment.RemoveAll(i => { return TypesHelper.CompareTypes(i.GetEType(), input); });
         }
 
         public Equipment GetEquipment(Types input)
         {
-            for (int i = 0; i < _types.Length; i++)
+            int index = _equipment.FindIndex(i => { return TypesHelper.CompareTypes(i.GetEType(), input); });
+            if ( index >= 0)
             {
-                if (TypesHelper.CompareTypes(input, _types[i]))
-                {
-                    return _equipment[i];
-                }
+                return _equipment[index];
             }
-            return null;
+            else
+            {
+                return null;
+            }
+        }
+
+        private bool IsThisEquipmentEquipped(Types input)
+        {
+            return ((int)input & _equipped) > 0;
         }
     
     }
